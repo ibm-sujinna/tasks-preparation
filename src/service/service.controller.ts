@@ -1,13 +1,13 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ServicesService } from './services.service';
+import { ServiceService } from './service.service';
 import { CreateServiceDto } from './dto/create-service.dto';
 
 @Controller('service')
-export class ServicesController {
-  constructor(private readonly ServicesService: ServicesService) {}
+export class ServiceController {
+  constructor(private readonly serviceService: ServiceService) {}
 
   @Post()
   createService(@Body() createServiceDto: CreateServiceDto) {
-    return this.ServicesService.createService(createServiceDto);
+    return this.serviceService.createService(createServiceDto);
   }
 }

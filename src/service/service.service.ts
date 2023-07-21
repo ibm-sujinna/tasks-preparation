@@ -3,7 +3,7 @@ import { CreateServiceDto } from './dto/create-service.dto';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 
 @Injectable()
-export class ServicesService {
+export class ServiceService {
   @Client({
     transport: Transport.KAFKA,
     options: {
