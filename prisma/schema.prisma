@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Service {  
+  id                      String         @id @default(auto()) @map("_id") @db.ObjectId  
+  state                   String
+  serviceSpecificationId  String
+  category                String?
+  description             String?
+  isBundle                Boolean?
+  status                  ServiceStatus  @default(IN_PROGRESS)
+  createdAt               DateTime       @default(now())  
+  updatedAt               DateTime       @updatedAt
+}
+
+enum ServiceStatus {
+  IN_PROGRESS
+  COMPLETE
+  FAILED
+}
