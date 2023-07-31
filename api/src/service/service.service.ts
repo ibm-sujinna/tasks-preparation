@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
-import { CreateServiceDto } from './dto/create-service.dto';
 import { PrismaService } from 'prisma/prisma.service';
+import { CreateServiceDto } from './dto/create-service.dto';
 
 @Injectable()
-export class AppService {
+export class ServiceService {
   constructor(private prisma: PrismaService) {}
 
   @Client({
