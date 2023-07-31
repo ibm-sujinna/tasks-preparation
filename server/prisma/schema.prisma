@@ -24,6 +24,6 @@ model Service {
 
 enum ServiceStatus {
   IN_PROGRESS
-  COMPLETE
+  COMPLETED
   FAILED
 }

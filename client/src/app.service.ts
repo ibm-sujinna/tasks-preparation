@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 import { CreateServiceDto } from './dto/create-service.dto';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class AppService {
+  constructor(private prisma: PrismaService) {}
+
   @Client({
     transport: Transport.KAFKA,
     options: {
@@ -33,5 +36,12 @@ export class AppService {
         isBundle: createServiceDto.isBundle,
       },
     });
+  }
+
+  async getStatus(id: string): Promise<string> {
+    const result = await this.prisma.service.findFirstOrThrow({
+      where: { id },
+    });
+    return result.status;
   }
 }
