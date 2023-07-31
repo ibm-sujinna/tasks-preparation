@@ -5,8 +5,8 @@ import { PrismaService } from 'prisma/prisma.service';
 export class AppService {
   constructor(private prisma: PrismaService) {}
 
-  async createService(data): Promise<string> {
+  async createService(data) {
     const result = await this.prisma.service.create({ data });
-    return result.status;
+    return { status: result.status };
   }
 }

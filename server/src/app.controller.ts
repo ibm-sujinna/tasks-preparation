@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern('service-topic')
-  async createService(@Payload() message): Promise<string> {
+  async createService(@Payload() message) {
     return await this.appService.createService(message.data);
   }
 }

@@ -38,10 +38,10 @@ export class AppService {
     });
   }
 
-  async getStatus(id: string): Promise<string> {
+  async getStatus(id: string) {
     const result = await this.prisma.service.findFirstOrThrow({
       where: { id },
     });
-    return result.status;
+    return { status: result.status };
   }
 }

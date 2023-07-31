@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Get('/:id')
-  async getStatus(@Param('id') id: string): Promise<string> {
+  async getStatus(@Param('id') id: string) {
     return this.appService.getStatus(id);
   }
 }
