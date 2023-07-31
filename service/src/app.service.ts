@@ -34,6 +34,7 @@ export class AppService {
         category: createServiceDto.category,
         description: createServiceDto.description,
         isBundle: createServiceDto.isBundle,
+        createdBy: 'User',
       },
     });
   }
