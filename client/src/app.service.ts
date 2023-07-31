@@ -25,7 +25,13 @@ export class AppService {
 
   createService(createServiceDto: CreateServiceDto) {
     return this.client.send('service-topic', {
-      createServiceDto: createServiceDto,
+      data: {
+        state: createServiceDto.state,
+        serviceSpecificationId: createServiceDto.serviceSpecificationId,
+        category: createServiceDto.category,
+        description: createServiceDto.description,
+        isBundle: createServiceDto.isBundle,
+      },
     });
   }
 }
