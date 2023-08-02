@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 import { PrismaService } from 'prisma/prisma.service';
 import { CreateServiceDto } from './dto/create-service.dto';
@@ -39,10 +39,17 @@ export class ServiceService {
     });
   }
 
+  private throwServiceNotFound(id: string) {
+    throw new NotFoundException(`Service with ID "${id}" not found`);
+  }
+
   async getStatus(id: string) {
-    const result = await this.prisma.service.findFirstOrThrow({
+    if (!/^[a-f\d]{24}$/i.test(id)) {
+      this.throwServiceNotFound(id);
+    }
+    const result = await this.prisma.service.findFirst({
       where: { id },
     });
-    return { status: result.status };
+    return result ? { status: result.status } : this.throwServiceNotFound(id);
   }
 }
