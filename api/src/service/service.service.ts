@@ -26,7 +26,7 @@ export class ServiceService {
     await this.client.connect();
   }
 
-  createService(createServiceDto: CreateServiceDto) {
+  createService(createServiceDto: CreateServiceDto, username: string) {
     return this.client.send('service-topic', {
       data: {
         state: createServiceDto.state,
@@ -34,7 +34,7 @@ export class ServiceService {
         category: createServiceDto.category,
         description: createServiceDto.description,
         isBundle: createServiceDto.isBundle,
-        createdBy: 'User',
+        createdBy: username,
       },
     });
   }
