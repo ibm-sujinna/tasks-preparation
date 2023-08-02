@@ -12,7 +12,7 @@ export class ServiceService {
     options: {
       client: {
         clientId: 'service',
-        brokers: ['localhost:9092'],
+        brokers: [process.env.BROKERS],
       },
       consumer: {
         groupId: 'service-consumer',
